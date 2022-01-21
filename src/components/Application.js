@@ -9,7 +9,7 @@ const days = [
     id: 1,
     name: "Monday",
     spots: 2,
-  },
+  }, 
   {
     id: 2,
     name: "Tuesday",
