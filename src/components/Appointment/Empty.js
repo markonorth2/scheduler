@@ -1,9 +1,9 @@
 import React from "react";
 
 
-export default function header (props) {
+export default function Empty (props) {
   
-  //destructuring props
+
 
   return(
     <main className="appointment__add">
