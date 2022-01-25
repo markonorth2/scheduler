@@ -1,3 +1,4 @@
+
 import React from "react";
 import "components/Appointment/styles.scss";
 import Header from "./Header";
@@ -5,14 +6,11 @@ import Show from "./Show";
 import Empty from "./Empty";
 
 export default function Appointment(props) {
-  let text = "No appointments";
-  if (props.time){
-    text = props.time
-  }
-  
   return(
     <article className="appointment">
-      <p>{"Appointment at " + text }</p>
+      {/* {props.time ? `Appointment at ${props.time}` : "No Appointments"} */}
+      <Header time={props.time}/>
+      {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty />}
     </article>
   )
 }
