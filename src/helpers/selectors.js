@@ -33,4 +33,3 @@ export function getInterview(state, interview) {
 
   return {...interview, interviewer : interviewerObj};
 } 
-console.log("hi")
