@@ -82,10 +82,32 @@ export default function Application(props) {
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  const bookInterview = function (id, interview){
+    console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then(() =>   
+         setState((prev) => ({...prev, appointments})
+      )
+    )
+  }
+
+  
+
   const schedule = dailyAppointments.map(appointment => { 
     const interview = getInterview(state, appointment.interview);
     const interviewersArr = getInterviewersForDay(state, state.day);
-    return (<Appointment {...appointment} key={appointment.id} interview={interview} interviewers={interviewersArr}/> )})
+    return (<Appointment {...appointment} key={appointment.id} interview={interview} interviewers={interviewersArr} bookInterview={bookInterview} /> )})
 
   const setDay = (day) => {
 		return setState({ ...state, day });
@@ -126,13 +148,15 @@ export default function Application(props) {
     });
   }, []);
 
-  const appointmentList = dailyAppointments.map((appointment) => {
-    // We could pass these props one by one, and when we do, we might notice a pattern. Our object keys match the prop names. 
-    // It feels kind of repetitive to write each prop out, so let's explore a short way that we can accomplish the same goal. 
-    // If we want every key in an object to become a prop for a component, we can spread the object into the props definition.
-    // <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={appointment.interview} /> 
-    return <Appointment key={appointment.id} {...appointment}  />
-  } )
+  // const appointmentList = dailyAppointments.map((appointment) => {
+  //   // We could pass these props one by one, and when we do, we might notice a pattern. Our object keys match the prop names. 
+  //   // It feels kind of repetitive to write each prop out, so let's explore a short way that we can accomplish the same goal. 
+  //   // If we want every key in an object to become a prop for a component, we can spread the object into the props definition.
+  //   // <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={appointment.interview} /> 
+  //   return <Appointment key={appointment.id} {...appointment}  />
+  // } )
+
+  console.log("state", state);
   return (
     <main className="layout">
       <section className="sidebar">
@@ -157,7 +181,7 @@ export default function Application(props) {
       />
       </section>
       <section className="schedule">
-        {appointmentList}
+        {schedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
