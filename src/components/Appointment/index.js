@@ -18,7 +18,19 @@ export default function Appointment(props) {
   
   // useVisualMode is a custom hook to track mode. Transition is to update the mode and back is to rewind to the previous mode
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
-  
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.bookInterview(props.id, interview)
+    .then(() => {
+      transition(SHOW);
+    });
+
+
+  }
   return(
     <article className="appointment">
       {/* {props.time ? `Appointment at ${props.time}` : "No Appointments"} */}
@@ -32,7 +44,7 @@ export default function Appointment(props) {
           onEdit={() => transition(EDIT)}
         />
        )}
-      {mode === CREATE && <Form interviewers={[]} onCancel={() => back(EMPTY)}/>}
+      {mode === CREATE && <Form interviewers={[]} onCancel={() => back(EMPTY)} onSave={save} />}
       
     </article>
   )
