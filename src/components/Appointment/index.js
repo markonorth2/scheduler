@@ -15,6 +15,7 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const EDIT = "EDIT";
 const SAVING = "SAVING";
+const DELETING = "DELETING";
 
 
 export default function Appointment(props) {
@@ -36,6 +37,17 @@ export default function Appointment(props) {
 
 
   }
+  function cancel() {
+
+    transition(DELETING);
+
+    props.cancelInterview(props.id)
+    .then(()=> {
+      transition(EMPTY)
+    });
+  }
+
+
   return(
     <article className="appointment">
       {/* {props.time ? `Appointment at ${props.time}` : "No Appointments"} */}
@@ -47,10 +59,12 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer}
           onEdit={() => transition(EDIT)}
+          onDelete={cancel}
         />
        )}
       {mode === CREATE && <Form interviewers={props.interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
       {mode === SAVING && <Status message={"Saving"}/>}
+      {mode === DELETING && <Status message={"Deleting"}/>}
       
     </article>
   )
