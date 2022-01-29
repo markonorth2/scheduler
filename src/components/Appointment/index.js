@@ -60,7 +60,7 @@ export default function Appointment(props) {
   function onDelete(isDelete, isConfirm) {
     if (isDelete === true && isConfirm === false) {
       transition(CONFIRM);
-    };
+    }; 
     if (isDelete === false && isConfirm === true) {
       transition(DELETING, true);
       props.cancelInterview(props.id)
