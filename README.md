@@ -25,6 +25,8 @@ npm run storybook
 
 ## User Experience 
 
+### User (Mark) can view existing interview appointments and all remaining spots for each day of the week
+![](https://github.com/markonorth2/scheduler/blob/master/screenshots/step_1.png)
 
 
 ## Final Product 
