@@ -4,10 +4,7 @@ import "components/InterviewerList.scss";
 
 
 export default function InterviewerList(props) {
-  // destructuring
-    // const {value} = props;
-  //console.log("props", props);
-  //Turn interviewer objects into interviewerlist items
+ 
   const parsedInterviewers = props.interviewers.map(interviewer => <InterviewerListItem 
     key = {interviewer.id}
     id = {interviewer.id}
@@ -30,11 +27,5 @@ export default function InterviewerList(props) {
 }
 
 
-// From DayList.js
-// const parsedDays = props.days.map(day => <DayListItem setDay={props.setDay} selected={props.day === day.name} key={day.id} {...day} />);  
-//   return (
-//     <ul>
-//       {parsedDays}
-//     </ul>
-//   );
+
 

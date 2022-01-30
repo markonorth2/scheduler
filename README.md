@@ -1,5 +1,6 @@
 # Interview Scheduler
 
+Interview Scheduler is a single page application built using React that allows users to book and cancel interviews. Data is persisted by an API server using a PostgreSQL database. The client application communicates with the API server over HTTP using axios, using the JSON format. Jest tests are used throughtout the development of the project. 
 ## Setup
 
 Install dependencies with `npm install`.
@@ -21,3 +22,11 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## User Experience 
+
+
+
+## Final Product 
+
+### Interview scheduler showing all interview appointments based on day selected
