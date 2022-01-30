@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios"
 
 import "components/Application.scss";
 import DayList from "components/DayList.js";
@@ -9,71 +8,8 @@ import useApplicationData from "hooks/useApplicationData";
 
 
 
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer:{
-//         id: 3,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Archie Andrews",
-//       interviewer:{
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       }
-//     }
-//   },
-//   {
-//     id: 5,
-//     time: "4pm",
-//   }
-// ];
-
-// We will no longer store the days data in a variable at the top level of the Application.js module. 
-// This data will now become application state that we will track with our useState Hook.
-  // const days = [
-  //   {
-  //     id: 1,
-  //     name: "Monday",
-  //     spots: 2,
-  //   }, 
-  //   {
-  //     id: 2,
-  //     name: "Tuesday",
-  //     spots: 5,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Wednesday",
-  //     spots: 0,
-  //   },
-  // ];
-
-
 export default function Application(props) {
-  // Combine the state for day, days, and appointments into a state into a single object.
-    // const [day, setDay] = useState("Monday");
-    // const [days, setDays] = useState([]);
-    // const [appointments, setAppointments] = useState ({});
+ 
   const {
     state,
     setDay,
@@ -91,25 +27,6 @@ export default function Application(props) {
     const interviewersArr = getInterviewersForDay(state, state.day);
     return (<Appointment {...appointment} key={appointment.id} interview={interview} interviewers={interviewersArr} bookInterview={bookInterview} cancelInterview={cancelInterview} /> )})
 
-
-  
-
-
-
-  //Create an effect to make a GET request to /api/days using axios and update the days state with the response. 
-    // useEffect(() => {
-    //   axios.get('/api/days').then(response => {
-    //     setDays(response.data)
-    //   })
-    // }, [])
-
-  // const appointmentList = dailyAppointments.map((appointment) => {
-  //   // We could pass these props one by one, and when we do, we might notice a pattern. Our object keys match the prop names. 
-  //   // It feels kind of repetitive to write each prop out, so let's explore a short way that we can accomplish the same goal. 
-  //   // If we want every key in an object to become a prop for a component, we can spread the object into the props definition.
-  //   // <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={appointment.interview} /> 
-  //   return <Appointment key={appointment.id} {...appointment}  />
-  // } )
 
   console.log("state", state);
   return (
